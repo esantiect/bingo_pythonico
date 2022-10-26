@@ -112,9 +112,9 @@ class Locutor:
         if type(texto) != str:
             texto = str(texto)
         audio = gTTS(texto, lang='pt', slow=False)
-        audio.save('tmp/fala.mp3')
-        playsound('tmp/fala.mp3')
-        remove('tmp/fala.mp3')
+        audio.save('./tmp/fala.mp3')
+        playsound('./tmp/fala.mp3')
+        remove('./tmp/fala.mp3')
 
     def fazer_graca(numero):
         if numero in Locutor.frases.keys():
