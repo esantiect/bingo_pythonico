@@ -1,0 +1,22 @@
+from bingo import Bingo
+import tkinter as tk
+
+b = Bingo()
+root = tk.Tk()
+root.protocol("WM_DELETE_WINDOW", exit)
+root.title("Bingo Pythonico")
+root.geometry('400x200')
+frame = tk.Frame(root)
+frame.pack()
+iniciar = tk.Button(frame, text="Iniciar", command=b.run)
+iniciar.pack(side=tk.LEFT)
+pausar = tk.Button(frame, text="Play/Pause", command=b.play_pause)
+pausar.pack(side=tk.LEFT)
+finalizar = tk.Button(frame, text="Finalizar", command=b.finalizar)
+finalizar.pack(side=tk.LEFT)
+texto_numero = tk.StringVar()
+texto_numero.set(b.ultimo_sorteado())
+numero = tk.Label(root, font=("Arial", 100), textvariable=texto_numero)
+b.adicionar_observador_externo(texto_numero)
+numero.pack()
+root.mainloop()
