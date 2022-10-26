@@ -65,22 +65,22 @@ class Bingo:
 
     def realizar_sorteio(self):
         Locutor.falar('Atenção o show vai começar! Cartela na mão.')
-        playsound('countdown.wav')
+        playsound('sons/countdown.wav')
         while not self.foi_finalizado() and self.restam_numeros():
             numero = self.proximo_numero()
             self.reportar_ao_observador()
             Locutor.falar_numero(numero)
             sleep(5)
             if self.esta_pausado():
-                playsound('sirene.mp3')
+                playsound('sons/sirene.mp3')
                 Locutor.falar("Alguém disse: ")
-                playsound('bingo.mp3')
+                playsound('sons/bingo.mp3')
                 Locutor.falar("Vamos conferir!")
                 self.mostra_sorteados()
                 while self.esta_pausado() and not self.foi_finalizado():
                     sleep(1)
         Locutor.falar("Jogo encerrado, parabéns ao vencedor!")
-        playsound('palmas.wav')
+        playsound('sons/palmas.wav')
         return
 
     def ultimo_sorteado(self):
@@ -112,9 +112,9 @@ class Locutor:
         if type(texto) != str:
             texto = str(texto)
         audio = gTTS(texto, lang='pt', slow=False)
-        audio.save('fala.mp3')
-        playsound('fala.mp3')
-        remove('fala.mp3')
+        audio.save('tmp/fala.mp3')
+        playsound('tmp/fala.mp3')
+        remove('tmp/fala.mp3')
 
     def fazer_graca(numero):
         if numero in Locutor.frases.keys():
